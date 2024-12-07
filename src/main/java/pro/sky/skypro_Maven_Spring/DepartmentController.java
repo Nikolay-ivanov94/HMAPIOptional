@@ -27,7 +27,10 @@ public class DepartmentController {
     }
 
     @GetMapping("/all")
-    public List<Object> getAllEmployeesByDepartment(@RequestParam(required = false) Integer departmentId) {
-        return departmentService.getAllEmployeesByDepartment(departmentId);
+    public Object getAllEmployeesByDepartment(@RequestParam(required = false) Integer departmentId) {
+        if (departmentId != null) {
+            return departmentService.getAllEmployeesByDepartment(departmentId);
+        }
+        return departmentService.getAllEmployeesGroupedByDepartment();
     }
 }
