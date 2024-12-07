@@ -27,12 +27,7 @@ public class DepartmentController {
     }
 
     @GetMapping("/all")
-    public List<Employee> getAllEmployeesByDepartment(@RequestParam(required = false) Integer departmentId) {
+    public List<Object> getAllEmployeesByDepartment(@RequestParam(required = false) Integer departmentId) {
         return departmentService.getAllEmployeesByDepartment(departmentId);
-    }
-
-    @GetMapping("/all-grouped")
-    public List<DepartmentEmployees> getAllEmployeesGroupedByDepartment() {
-        return departmentService.getAllEmployeesGroupedByDepartment();
     }
 }

@@ -38,20 +38,16 @@ public class DepartmentService {
                 .orElse(null);
     }
 
-    public List<Employee> getAllEmployeesByDepartment(Integer departmentId) {
+    public List<Object> getAllEmployeesByDepartment(Integer departmentId) {
         if (departmentId == null) {
-            return employees;
+            return employees.stream()
+                    .collect(Collectors.groupingBy(Employee::getNumberDepartment))
+                    .entrySet().stream()
+                    .map(entry -> new DepartmentEmployees(entry.getKey(), entry.getValue()))
+                    .collect(Collectors.toList());
         }
         return employees.stream()
                 .filter(e -> e.getNumberDepartment() == departmentId)
-                .collect(Collectors.toList());
-    }
-
-    public List<DepartmentEmployees> getAllEmployeesGroupedByDepartment() {
-        return employees.stream()
-                .collect(Collectors.groupingBy(Employee::getNumberDepartment))
-                .entrySet().stream()
-                .map(entry -> new DepartmentEmployees(entry.getKey(), entry.getValue()))
                 .collect(Collectors.toList());
     }
 }
