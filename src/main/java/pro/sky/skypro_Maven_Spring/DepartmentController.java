@@ -7,32 +7,32 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/departments")
-public class EmployeeController {
+public class DepartmentController {
 
-    private final EmployeeService employeeService;
+    private final DepartmentService departmentService;
 
     @Autowired
-    public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
+    public DepartmentController(DepartmentService departmentService) {
+        this.departmentService = departmentService;
     }
 
     @GetMapping("/max-salary")
     public Employee getEmployeeWithMaxSalary(@RequestParam int departmentId) {
-        return employeeService.getEmployeeWithMaxSalary(departmentId);
+        return departmentService.getEmployeeWithMaxSalary(departmentId);
     }
 
     @GetMapping("/min-salary")
     public Employee getEmployeeWithMinSalary(@RequestParam int departmentId) {
-        return employeeService.getEmployeeWithMinSalary(departmentId);
+        return departmentService.getEmployeeWithMinSalary(departmentId);
     }
 
     @GetMapping("/all")
     public List<Employee> getAllEmployeesByDepartment(@RequestParam(required = false) Integer departmentId) {
-        return employeeService.getAllEmployeesByDepartment(departmentId);
+        return departmentService.getAllEmployeesByDepartment(departmentId);
     }
 
     @GetMapping("/all-grouped")
-    public List<EmployeeService.DepartmentEmployees> getAllEmployeesGroupedByDepartment() {
-        return employeeService.getAllEmployeesGroupedByDepartment();
+    public List<DepartmentEmployees> getAllEmployeesGroupedByDepartment() {
+        return departmentService.getAllEmployeesGroupedByDepartment();
     }
 }

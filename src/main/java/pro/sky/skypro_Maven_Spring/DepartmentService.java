@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class EmployeeService {
+public class DepartmentService {
 
     private static List<Employee> employees = new ArrayList<>();
 
@@ -53,31 +53,5 @@ public class EmployeeService {
                 .entrySet().stream()
                 .map(entry -> new DepartmentEmployees(entry.getKey(), entry.getValue()))
                 .collect(Collectors.toList());
-    }
-
-    public static class DepartmentEmployees {
-        private int departmentId;
-        private List<Employee> employees;
-
-        public DepartmentEmployees(int departmentId, List<Employee> employees) {
-            this.departmentId = departmentId;
-            this.employees = employees;
-        }
-
-        public int getDepartmentId() {
-            return departmentId;
-        }
-
-        public void setDepartmentId(int departmentId) {
-            this.departmentId = departmentId;
-        }
-
-        public List<Employee> getEmployees() {
-            return employees;
-        }
-
-        public void setEmployees(List<Employee> employees) {
-            this.employees = employees;
-        }
     }
 }
